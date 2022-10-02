@@ -12,42 +12,63 @@ use App\Models\Vacancy;
 class ApiController extends Controller
 {
 
-	public function getStat(){
+	public function getStat()
+	{
 		return json_encode(
+			[
+				"status" => 'ok',
+				"total_vacancies" => Vacancy::count(),
+				"total_resumes" => Resume::count(),
+				"total_students" => Student::count(),
+				"total_universities" => University::count()
+			]
+		);
+	}
+
+	public function getStatByRegion(Request $request)
+	{
+		try {
+			$regionId = $request->input("regionId");
+			return json_encode(
 				[
 					"status" => 'ok',
-					"total_vacancies" => Vacancy::count(),
-					"total_resumes" => Resume::count(),
-					"total_students" => Student::count(),
-					"total_universities" => University::count()
+					"total_vacancies" => Vacancy::select('vacancies.*')
+					->join('users', 'users.id', '=', 'vacancies.user_id')
+					->where('users.region_id', $regionId)->count(),
+					
+					"total_resumes" => Resume::select('resumes.*')
+					->join('users', 'users.id', '=', 'resumes.user_id')
+					->where('users.region_id', $regionId)->count(),
+
+					"total_students" => Student::select('students.*')
+					->join('users', 'users.id', '=', 'students.user_id')
+					->where('users.region_id', $regionId)->count(),
+
+					"total_universities" => University::select('universities.*')
+					->join('users', 'users.id', '=', 'universities.user_id')
+					->where('users.region_id', $regionId)->count(),
 				]
 			);
-	}
-
-	public function getStatByRegion(Request $request){
-		if($request->has('regionId')){
-			if(gettype($request->input('regionId')) == "integer"){
-				return "ok";
-			}
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
 		}
-		return json_encode(
-				[
-					"status" => "Bad request"
-				]
-			);
 	}
 
-	public function getRegions(){
+	public function getRegions()
+	{
 		return json_encode(
-				[
-					"status" => "ok",
-					"regions" => Region::all()
-				]
-			);
+			[
+				"status" => "ok",
+				"regions" => Region::all()
+			]
+		);
 	}
 
-	public function getUnivers(){
+	public function getUnivers()
+	{
 		return University::all();
 	}
-
 }

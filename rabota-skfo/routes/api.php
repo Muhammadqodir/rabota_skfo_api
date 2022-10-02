@@ -11,7 +11,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('statistics', );
+Route::get('statistics', [ApiController::class, 'getStat']);
 
 Route::get('university/getAll', [UniversityController::class, 'getUniversities']);
 

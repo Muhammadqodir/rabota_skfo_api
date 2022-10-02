@@ -71,4 +71,22 @@ class ApiController extends Controller
 			"data" => University::all()
 		]);
 	}
+
+	public function getUniversByRegion()
+	{
+		try {
+			$regionId = $request->input("regionId");
+			return json_encode([
+				"status" => "ok",
+				"data" => University::select('universities.*')
+				->join('users', 'users.details', '=', 'universities.id')
+				->where('users.region_id', $regionId)->get()
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
 }

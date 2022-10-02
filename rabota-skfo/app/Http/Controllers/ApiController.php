@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use App\Models\Resume;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -19,6 +20,15 @@ class ApiController extends Controller
 					"total_resumes" => Resume::count(),
 					"total_students" => Student::count(),
 					"total_universities" => University::count()
+				]
+			);
+	}
+
+	public function getRegions(){
+		return json_encode(
+				[
+					"status" => "ok",
+					"regions" => Region::all()
 				]
 			);
 	}

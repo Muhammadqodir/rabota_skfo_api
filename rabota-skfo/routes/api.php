@@ -13,6 +13,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('statistics', [ApiController::class, 'getStat']);
 
+Route::get('regions', [ApiController::class, 'getRegions']);
+
 Route::get('university/getAll', [UniversityController::class, 'getUniversities']);
 
 Route::get('university/all', [ApiController::class, 'getUnivers']);

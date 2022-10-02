@@ -23,9 +23,6 @@
 			      <li class="nav-item menu_item {{ Request::is('companies') ? 'active' : '' }}">
 			        <a class="nav-link" href="{{route('search')}}?type=org">Каталог компаний</a>
 			      </li>
-			      <li class="nav-item menu_item {{ Request::is('companies') ? 'active' : '' }}">
-			        <a class="nav-link" href="{{route('search')}}?type=org">Test</a>
-			      </li>
 			    </ul>
 			    <ul class="navbar-nav my-2 my-lg-0">
 

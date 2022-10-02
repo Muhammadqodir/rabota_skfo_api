@@ -66,6 +66,9 @@ class ApiController extends Controller
 
 	public function getUnivers()
 	{
-		return University::all();
+		return json_encode([
+			"status" => "ok",
+			"data" => University::all()
+		]);
 	}
 }

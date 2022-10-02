@@ -17,8 +17,4 @@ Route::get('statistics/byRegion', [ApiController::class, 'getStatByRegion']);
 
 Route::get('regions', [ApiController::class, 'getRegions']);
 
-Route::get('university/getAll', [UniversityController::class, 'getUniversities']);
-
-Route::get('university/all', [ApiController::class, 'getUnivers']);
-
-Route::get('university/getByRegion', [UniversityController::class, 'getUniversitiesByRegion'])->name('api.getUniverByRegion');
+Route::get('university/getAll', [ApiController::class, 'getUnivers']);

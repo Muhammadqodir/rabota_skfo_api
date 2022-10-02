@@ -24,6 +24,19 @@ class ApiController extends Controller
 			);
 	}
 
+	public function getStatByRegion(Request $request){
+		if($request->has('regionId')){
+			if(gettype($request->input('regionId')) == "integer"){
+				return "ok";
+			}
+		}
+		return json_encode(
+				[
+					"status" => "Bad request"
+				]
+			);
+	}
+
 	public function getRegions(){
 		return json_encode(
 				[

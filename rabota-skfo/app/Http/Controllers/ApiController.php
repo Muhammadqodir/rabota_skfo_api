@@ -7,6 +7,7 @@ use App\Models\Resume;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\University;
+use App\Models\User;
 use App\Models\Vacancy;
 
 class ApiController extends Controller
@@ -40,9 +41,7 @@ class ApiController extends Controller
 					->join('users', 'users.id', '=', 'resumes.user_id')
 					->where('users.region_id', $regionId)->count(),
 
-					"total_students" => Student::select('students.*')
-					->join('users', 'users.id', '=', 'students.user_id')
-					->where('users.region_id', $regionId)->count(),
+					"total_students" => User::where('role', "student")->count(),
 
 					"total_universities" => University::select('universities.*')
 					->join('users', 'users.id', '=', 'universities.user_id')

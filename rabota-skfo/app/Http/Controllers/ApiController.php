@@ -43,9 +43,7 @@ class ApiController extends Controller
 
 					"total_students" => User::where('role', "student")->count(),
 
-					"total_universities" => University::select('universities.*')
-					->join('users', 'users.id', '=', 'universities.user_id')
-					->where('users.region_id', $regionId)->count(),
+					"total_universities" => User::where('role', "university")->count(),
 				]
 			);
 		} catch (\Throwable $th) {

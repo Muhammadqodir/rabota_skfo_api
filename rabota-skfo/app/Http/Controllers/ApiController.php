@@ -80,7 +80,7 @@ class ApiController extends Controller
 				"status" => "ok",
 				"data" => University::select('universities.*')
 				->join('users', 'users.details', '=', 'universities.id')
-				->join('users', 'users.role', '=', 'university')
+				->where('users.role', 'university')
 				->where('users.region_id', $regionId)->get()
 			]);
 		} catch (\Throwable $th) {

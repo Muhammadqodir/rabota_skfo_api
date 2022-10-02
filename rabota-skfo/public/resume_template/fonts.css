@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "Custom";
+    src: url("fonts/light.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Custom";
+    src: url("fonts/bold.ttf") format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Custom";
+    src: url("fonts/italic.ttf") format('truetype');
+    font-style: italic;
+}
+
+body{
+	font-family: 'Custom';
+}
+
+table td, table td * {
+    vertical-align: top;
+}
+
+hr{
+    border: solid .5px #ccc;
+}
+
+a{
+    color: #0747A7; text-decoration: none;
+}

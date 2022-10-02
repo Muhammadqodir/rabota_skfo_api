@@ -1,0 +1,14 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/scripts.js": "/js/scripts.js",
+    "/js/utils.js": "/js/utils.js",
+    "/js/cabinet.js": "/js/cabinet.js",
+    "/js/dynamicforms.js": "/js/dynamicforms.js",
+    "/js/createresume.js": "/js/createresume.js",
+    "/js/createvacancy.js": "/js/createvacancy.js",
+    "/js/profile.js": "/js/profile.js",
+    "/js/autocompleteInput.js": "/js/autocompleteInput.js",
+    "/js/masks.js": "/js/masks.js",
+    "/css/fonts.css": "/css/fonts.css",
+    "/css/app.css": "/css/app.css"
+}

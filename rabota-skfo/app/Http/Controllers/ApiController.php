@@ -74,7 +74,7 @@ class ApiController extends Controller
 
 	public function getUniversByRegion()
 	{
-		try {
+		// try {
 			$regionId = $request->input("regionId");
 			return json_encode([
 				"status" => "ok",
@@ -83,11 +83,11 @@ class ApiController extends Controller
 				->join('users', 'users.role', '=', 'university')
 				->where('users.region_id', $regionId)->get()
 			]);
-		} catch (\Throwable $th) {
-			return json_encode([
-				"status" => "Bad request",
-				"error" => $th
-			]);
-		}
+		// } catch (\Throwable $th) {
+		// 	return json_encode([
+		// 		"status" => "Bad request",
+		// 		"error" => $th
+		// 	]);
+		// }
 	}
 }

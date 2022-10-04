@@ -16,7 +16,7 @@ class UniverLess extends JsonResource
     {
         return [
             'id' => $this->id,
-            'fullName' => $this->fullName,
+            'fullName' => $this->getUser()->name,
             'shortName' => $this->shortName
         ];
     }

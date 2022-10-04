@@ -14,6 +14,15 @@ class StudentLess extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        if($this->getUser() != null){
+            return [
+                'id' => $this->id,
+                'fullName' => $this->getUser()->name,
+            ];
+        }
+        return [
+            'id' => $this->id,
+            'fullName' => "undefined"
+        ];
     }
 }

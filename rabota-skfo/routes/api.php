@@ -11,6 +11,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('getUniverByRegion', [UniversityController::class, 'getUniversitiesByRegion'])->name('api.getUniverByRegion');
+
 Route::get('statistics', [ApiController::class, 'getStat']);
 
 Route::post('statistics/byRegion', [ApiController::class, 'getStatByRegion']);
@@ -25,4 +27,4 @@ Route::get('university/{id}', [ApiController::class, 'getUniver']);
 
 Route::get('university/{id}/getStudents', [ApiController::class, 'getUniverStudents']);
 
-Route::get('getUniverByRegion', [UniversityController::class, 'getUniversitiesByRegion'])->name('api.getUniverByRegion');
+Route::get('student/getAll', [ApiController::class, 'getStudents']);

@@ -114,7 +114,22 @@ class ApiController extends Controller
 		try {
 			return json_encode([
 				"status" => "ok",
-				"data" => new StudentLess(Student::where('univer_id', $id)->get())
+				"data" => StudentLess::collection(Student::where('university_id', $id)->get())
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
+
+	public function getStudents(Request $request)
+	{
+		try {
+			return json_encode([
+				"status" => "ok",
+				"data" => StudentLess::collection(Student::all())
 			]);
 		} catch (\Throwable $th) {
 			return json_encode([

@@ -51,3 +51,10 @@ Route::get('vacancy/getAll', [ApiController::class, 'getVacancies']);
 Route::get('vacancy/search', [ApiController::class, 'searchVacancy']);
 
 Route::get('vacancy/{id}', [ApiController::class, 'getVacancy']);
+
+
+Route::get('resume/getAll', [ApiController::class, 'getResumes']);
+
+Route::get('resume/search', [ApiController::class, 'searchResume']);
+
+Route::get('resume/{id}', [ApiController::class, 'getResume']);

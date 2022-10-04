@@ -10,6 +10,7 @@ use App\Http\Resources\UniverLess;
 use App\Http\Resources\UniverMore;
 use App\Http\Resources\OrganizationMore;
 use App\Http\Resources\StudentLess;
+use App\Http\Resources\ResumeLess;
 use App\Http\Resources\VacancyLess;
 use App\Http\Resources\StudentMore;
 use App\Models\University;
@@ -333,7 +334,65 @@ class ApiController extends Controller
 		return json_encode([
 			"status"=>"ok",
 			"total"=> count($result),
-			"data"=> VacancyLess::collection($res->get())
+			"data"=> VacancyLess::collection($result)
+		]);
+	}
+
+
+	public function getResumes(Request $request)
+	{
+		try {
+			return json_encode([
+				"status" => "ok",
+				"data" => ResumeLess::collection(Resume::all())
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
+
+	public function getResume(Request $request, $id)
+	{
+		try {
+			$resume = Resume::findOrFail($id);
+			return json_encode([
+				"status" => "ok",
+				"data" => [
+					"student" => new StudentMore($resume->getUser()->getDetails()),
+					"resume" => $resume
+				]
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
+
+	public function searchResume(Request $request){
+		$q = $request->has('q') ? $request->q : '';
+		$res = Resume::select('resumes.*')
+				->join('users', 'users.id', '=', 'resumes.user_id')
+				->where(function($query) use($q){
+						$query->where('resumes.position', 'like', '%'.$q.'%');
+				});
+		if($request->region_id != 0 && $request->region_id != null){
+				$res->where('users.region_id', $request->region_id);
+		}
+		if($request->sFrom > 0 && $request->sFrom != null){
+				$res->where('resumes.salary_from', '>', $request->sFrom);
+		}else if($request->sTo > 0 && $request->sTo != null){
+				$res->where('resumes.salary_to', '<', $request->sTo);
+		}
+		$result = $res->get();
+		return json_encode([
+			"status"=>"ok",
+			"total"=> count($result),
+			"data"=> ResumeLess::collection($result)
 		]);
 	}
 }

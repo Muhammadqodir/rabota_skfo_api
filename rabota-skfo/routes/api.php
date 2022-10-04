@@ -28,3 +28,26 @@ Route::get('university/{id}', [ApiController::class, 'getUniver']);
 Route::get('university/{id}/getStudents', [ApiController::class, 'getUniverStudents']);
 
 Route::get('student/getAll', [ApiController::class, 'getStudents']);
+
+Route::get('student/{id}', [ApiController::class, 'getStudent']);
+
+Route::get('student/{id}/getResume', [ApiController::class, 'getStudentResume']);
+
+Route::post('student/byRegion', [ApiController::class, 'getStudentsByRegion']);
+
+Route::post('student/byUniversity', [ApiController::class, 'getStudentsByUniver']);
+
+Route::get('organization/getAll', [ApiController::class, 'getOrgs']);
+
+Route::get('organization/{id}', [ApiController::class, 'getOrg']);
+
+Route::post('organization/byRegion', [ApiController::class, 'getOrgsByRegion']);
+
+Route::get('organization/{id}/getVacancies', [ApiController::class, 'getOrgVacancies']);
+
+
+Route::get('vacancy/getAll', [ApiController::class, 'getVacancies']);
+
+Route::get('vacancy/search', [ApiController::class, 'searchVacancy']);
+
+Route::get('vacancy/{id}', [ApiController::class, 'getVacancy']);

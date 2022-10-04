@@ -14,6 +14,7 @@ use App\Models\User;
 class ProfileController extends Controller
 {
     public function updateStudentProfile(StudentProfileUpdate $request){
+        // dd($request);
         if(!Auth::check()){
             return redirect(route('user.login'));
         }
@@ -27,6 +28,7 @@ class ProfileController extends Controller
         }
         $user->name = $request->input('fullName');
         $user->phone = $request->input('phoneNumber');
+        $user->region_id = $request->input('region');
         $details = $user->getDetails();
         $details->bday = $request->input('burnDate');
         if($request->input('speciality') != null){

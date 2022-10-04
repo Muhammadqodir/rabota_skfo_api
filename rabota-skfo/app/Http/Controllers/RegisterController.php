@@ -43,8 +43,8 @@ class RegisterController extends Controller
         $user->password = $request->input('password');
         $user->details = $student->id;
         $saveTask = $user->save();
-
-        event(new Registered($user));
+        //forEmail
+        // event(new Registered($user));
         if($saveTask){
             Auth::login($user);
             return redirect(route("main"));
@@ -81,8 +81,8 @@ class RegisterController extends Controller
         $user->password = $request->input('password');
         $user->details = $organization->id;
         $saveTask = $user->save();
-
-        event(new Registered($user));
+        //email
+        // event(new Registered($user));
         if($saveTask){
             Auth::login($user);
             return redirect(route("main"));

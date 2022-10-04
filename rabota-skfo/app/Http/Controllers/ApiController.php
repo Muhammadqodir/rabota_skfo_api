@@ -6,6 +6,9 @@ use App\Models\Region;
 use App\Models\Resume;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Resources\UniverLess;
+use App\Http\Resources\UniverMore;
+use App\Http\Resources\StudentLess;
 use App\Models\University;
 use App\Models\User;
 use App\Models\Vacancy;
@@ -78,10 +81,40 @@ class ApiController extends Controller
 			$regionId = $request->input("regionId");
 			return json_encode([
 				"status" => "ok",
-				"data" => University::select('universities.*')
+				"data" => UniverLess::collection(University::select('universities.*')
 				->join('users', 'users.details', '=', 'universities.id')
 				->where('users.role', 'university')
-				->where('users.region_id', $regionId)->get()
+				->where('users.region_id', $regionId)->get())
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
+
+	public function getUniver(Request $request, $id)
+	{
+		try {
+			return json_encode([
+				"status" => "ok",
+				"data" => new UniverMore(University::findOrFail($id))
+			]);
+		} catch (\Throwable $th) {
+			return json_encode([
+				"status" => "Bad request",
+				"error" => $th
+			]);
+		}
+	}
+
+	public function getUniverStudents(Request $request, $id)
+	{
+		try {
+			return json_encode([
+				"status" => "ok",
+				"data" => new StudentLess(Student::where('univer_id', $id)->get())
 			]);
 		} catch (\Throwable $th) {
 			return json_encode([

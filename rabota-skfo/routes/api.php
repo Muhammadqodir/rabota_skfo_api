@@ -13,10 +13,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('statistics', [ApiController::class, 'getStat']);
 
-Route::get('statistics/byRegion', [ApiController::class, 'getStatByRegion']);
+Route::post('statistics/byRegion', [ApiController::class, 'getStatByRegion']);
 
 Route::get('regions', [ApiController::class, 'getRegions']);
 
 Route::get('university/getAll', [ApiController::class, 'getUnivers']);
 
-Route::get('university/byRegion', [ApiController::class, 'getUniversByRegion']);
+Route::post('university/byRegion', [ApiController::class, 'getUniversByRegion']);
+
+Route::get('university/{id}', [ApiController::class, 'getUniver']);
+
+Route::get('university/{id}/getStudents', [ApiController::class, 'getUniverStudents']);
+
+Route::get('getUniverByRegion', [UniversityController::class, 'getUniversitiesByRegion'])->name('api.getUniverByRegion');

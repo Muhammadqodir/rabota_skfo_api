@@ -14,7 +14,17 @@ use Illuminate\Support\Facades\Auth;
 class ModeratorController extends Controller
 {
     public function profilePage(){
+        $user = Auth::user();
+        if($user->api_token == null){
+            $user->updateApiToken();
+        }
         return view('profile', ['user'=>Auth::user()]);
+    }
+
+    public function updateApiToken(){
+        $user = Auth::user();
+        $user->updateApiToken();
+        return $user->api_token;
     }
 
     public function staticticsPage(){

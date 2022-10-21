@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use phpDocumentor\Reflection\PseudoTypes\True_;
 use PhpOption\None;
@@ -30,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'details',
         'region_id',
         'password',
+        'api_token',
     ];
 
     protected $attributes = [
@@ -71,6 +73,11 @@ class User extends Authenticatable implements MustVerifyEmail
         }else{
             return False;
         }
+    }
+
+    public function updateApiToken(){
+        $this->api_token = Str::random(60);
+        $this->save();
     }
 
     public function isUserHasPic(){

@@ -116,6 +116,8 @@ Route::name('student.')->middleware('auth', 'student')->group(function(){
 });
 
 Route::name('moderator.')->middleware('auth', 'moderator')->group(function(){
+    Route::get('moderator/update_api_token', [ModeratorController::class, 'updateApiToken'])->name('updateApiToken');
+
     Route::get('moderator/profile', [ModeratorController::class, 'profilePage'])->name('profile');
     
     Route::get('moderator/stat', [ModeratorController::class, 'staticticsPage'])->name('stat');

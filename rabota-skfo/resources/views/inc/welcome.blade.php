@@ -9,11 +9,18 @@
                 <div class="col-md-6" style="margin: auto;">
                     <div class="row">
                         <div class="col-12" style="font-family: myfont_bold;">
+                        <br><br>
                         <h2>Работа найдется для каждого</h2></div>
                     </div>
                     <div class="row" style="margin-top: 12px;">
-                        <div class="col-12" style="font-family: myfont_light">
-                            <h5 class="strokeme">Вакансии: {{count(\App\Models\Vacancy::where('is_active', 1)->get())+json_decode(file_get_contents('https://opendata.trudvsem.ru/api/v1/vacancies/region/260000000?offset=1&limit=100'), true)['meta']['total']}} <span class="divider"></span>Резюме: {{count(\App\Models\Resume::all())}}<span class="divider"></span>Компании: {{count(\App\Models\Organization::all())}}</h5> 
+                        <div class="col-md-4" style="font-family: myfont_light">
+                            <h5 class="strokeme">Вакансии: {{count(\App\Models\Vacancy::where('is_active', 1)->get())+json_decode(file_get_contents('https://opendata.trudvsem.ru/api/v1/vacancies/region/260000000?offset=1&limit=100'), true)['meta']['total']}} </h5> 
+                        </div>
+                        <div class="col-md-4" style="font-family: myfont_light">
+                            <h5 class="strokeme">Резюме: {{count(\App\Models\Resume::all())}}</h5> 
+                        </div>
+                        <div class="col-md-4" style="font-family: myfont_light">
+                            <h5 class="strokeme"></span>Компании: {{count(\App\Models\Organization::all())}}</h5> 
                         </div>
                     </div>
 
@@ -23,7 +30,7 @@
                                 <i class="fas fa-search main_search_i"></i>
                                 <input type="text" placeholder="Поиск" name="q" name="search_q">
                             </div>
-                            <div class="col-3 search_type" style="background-color: #fff; padding: 0px;">
+                            <div class="col-4 search_type" style="background-color: #fff; padding: 0px;">
                                 <div></div>
                                 <select name="type">
                                     <option value="vacancy">Ваканcии</option>
@@ -31,7 +38,7 @@
                                     <option value="org">Компании</option>
                                 </select>
                             </div>
-                            <div class="col-2" style="padding: 0px;">
+                            <div class="col-1" style="padding: 0px;">
 
                                 <button class="btn_search" onclick="search()" style="height: 100%; width: 100%;">
                                     <i class="fas fa-search"></i>

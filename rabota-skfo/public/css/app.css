@@ -963,6 +963,7 @@ a .clear {
     background-color: #fff;
     margin: auto;
     height: 100px;
+    margin: 6px;
     border-radius: 50%;
     box-shadow: 0px 0px 10px #ccc;
     margin-bottom: 12px;
